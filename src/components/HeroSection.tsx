@@ -4,6 +4,7 @@ import { ArrowRight, Zap, Code, Palette } from 'lucide-react';
 const HeroSection = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+      <iframe src='https://my.spline.design/animatedbackgroundgradientforweb-ihbQCbwP5NPYO1iN6XCDQ7jt/' className='absolute' width='100%' height='100%'></iframe>
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl floating-animation"></div>
