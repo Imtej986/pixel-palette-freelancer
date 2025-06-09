@@ -1,19 +1,9 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
     { name: 'Features', href: '#features' },
@@ -24,9 +14,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-background/80 backdrop-blur-lg border-b border-border' : 'bg-transparent'
-      }`}>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -34,7 +22,7 @@ const Navigation = () => {
               <img 
                 src="/lovable-uploads/bd539eae-50dc-4a65-b043-8db963b976a9.png" 
                 alt="TemplateForge" 
-                className="h-8 w-auto filter brightness-0 invert"
+                className="h-8 w-auto"
               />
               <h1 className="text-2xl font-bold gradient-text ml-3">TemplateForge</h1>
             </div>
@@ -71,11 +59,11 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation - Slides up from bottom */}
-        <div className={`md:hidden fixed inset-x-0 bottom-0 z-50 transition-transform duration-300 ${
-          isOpen ? 'translate-y-0' : 'translate-y-full'
+        {/* Mobile Navigation - Slides down from top */}
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
+          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <div className="bg-card/95 backdrop-blur-lg border-t border-border p-6 rounded-t-3xl">
+          <div className="bg-card/95 backdrop-blur-lg border-t border-border p-6">
             <div className="flex flex-col space-y-4">
               {navItems.map((item, index) => (
                 <a
