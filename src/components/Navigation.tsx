@@ -30,8 +30,13 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold gradient-text">TemplateForge</h1>
+            <div className="flex-shrink-0 flex items-center">
+              <img 
+                src="/lovable-uploads/bd539eae-50dc-4a65-b043-8db963b976a9.png" 
+                alt="TemplateForge" 
+                className="h-8 w-auto filter brightness-0 invert"
+              />
+              <h1 className="text-2xl font-bold gradient-text ml-3">TemplateForge</h1>
             </div>
 
             {/* Desktop Navigation */}

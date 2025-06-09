@@ -65,49 +65,52 @@ const TemplatesSection = () => {
           {templates.map((template, index) => (
             <div
               key={template.name}
-              className="scroll-fade-in group relative overflow-hidden rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 hover:transform hover:scale-105 bg-card"
+              className="scroll-fade-in group relative overflow-hidden rounded-2xl border border-border hover:border-primary/50 transition-all duration-500 hover:transform hover:scale-105 bg-card cursor-pointer"
               style={{ animationDelay: template.delay }}
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="aspect-video overflow-hidden relative">
                 <img
                   src={`https://images.unsplash.com/${template.image}?w=800&h=600&fit=crop`}
                   alt={template.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-              </div>
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-secondary font-medium">
-                    {template.category}
-                  </span>
-                  <button className="text-primary hover:text-primary/80 transition-colors duration-300">
-                    <ExternalLink size={16} />
-                  </button>
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {template.name}
-                </h3>
-                <div className="flex items-center gap-2">
-                  <Heart size={16} className="text-primary" />
-                  <span className="text-sm text-muted-foreground">{template.likes} likes</span>
+                
+                {/* Overlay that appears on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Content that slides up on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-secondary font-medium bg-secondary/20 px-2 py-1 rounded-full">
+                      {template.category}
+                    </span>
+                    <button className="text-primary hover:text-primary/80 transition-colors duration-300 hover:scale-110 transform">
+                      <ExternalLink size={18} />
+                    </button>
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {template.name}
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <Heart size={16} className="text-primary" />
+                    <span className="text-sm text-muted-foreground">{template.likes} likes</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="p-6">
+              {/* Static content visible when not hovering */}
+              <div className="p-6 group-hover:opacity-0 transition-opacity duration-300">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-sm text-secondary font-medium">
+                    <span className="text-sm text-secondary font-medium bg-secondary/20 px-2 py-1 rounded-full">
                       {template.category}
                     </span>
-                    <h3 className="text-lg font-semibold">
+                    <h3 className="text-lg font-semibold mt-2">
                       {template.name}
                     </h3>
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground">
-                    <Heart size={16} />
+                    <Heart size={16} className="text-primary" />
                     <span className="text-sm">{template.likes}</span>
                   </div>
                 </div>
@@ -117,7 +120,7 @@ const TemplatesSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-secondary hover:bg-secondary/80 text-secondary-foreground px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+          <button className="bg-secondary hover:bg-secondary/80 text-secondary-foreground px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 glow-effect">
             View All Templates
           </button>
         </div>

@@ -16,7 +16,7 @@
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 0 84% 60%;
+    --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 45 100% 50%;
@@ -33,7 +33,7 @@
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 0 84% 60%;
+    --ring: 25 95% 53%;
 
     --radius: 0.5rem;
   }
@@ -59,7 +59,7 @@
   }
 
   .glow-effect {
-    filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.3));
+    filter: drop-shadow(0 0 20px rgba(255, 138, 51, 0.3));
   }
 
   .scroll-fade-in {
@@ -87,7 +87,7 @@
   }
 
   @keyframes pulse-glow {
-    from { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
-    to { box-shadow: 0 0 30px rgba(239, 68, 68, 0.8); }
+    from { box-shadow: 0 0 20px rgba(255, 138, 51, 0.4); }
+    to { box-shadow: 0 0 30px rgba(255, 138, 51, 0.8); }
   }
 }
