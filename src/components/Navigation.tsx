@@ -1,9 +1,21 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Close mobile menu when window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const navItems = [
     { name: 'Features', href: '#features' },
@@ -35,7 +47,6 @@ const Navigation = () => {
                     key={item.name}
                     href={item.href}
                     className="text-foreground hover:text-primary transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium relative group"
-                    onClick={() => setIsOpen(false)}
                   >
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
@@ -59,41 +70,38 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation - Slides down from top */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
-          <div className="bg-card/95 backdrop-blur-lg border-t border-border p-6">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item, index) => (
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden bg-card/95 backdrop-blur-lg border-t border-border">
+            <div className="px-4 py-6 space-y-4">
+              {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground hover:text-primary transition-all duration-300 py-3 px-4 rounded-lg hover:bg-muted text-lg font-medium border-l-4 border-transparent hover:border-primary"
+                  className="block text-foreground hover:text-primary transition-colors duration-300 py-2 text-lg font-medium"
                   onClick={() => setIsOpen(false)}
-                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {item.name}
                 </a>
               ))}
               <button
-                className="bg-primary hover:bg-primary/80 text-primary-foreground py-3 px-6 rounded-full transition-all duration-300 hover:scale-105 mt-4 pulse-glow"
+                className="w-full bg-primary hover:bg-primary/80 text-primary-foreground py-3 px-6 rounded-full transition-all duration-300 hover:scale-105 mt-4"
                 onClick={() => setIsOpen(false)}
               >
                 Get Started
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Overlay */}
-        {isOpen && (
-          <div
-            className="md:hidden fixed inset-0 bg-background/50 backdrop-blur-sm z-40"
-            onClick={() => setIsOpen(false)}
-          />
         )}
       </nav>
+
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-background/50 backdrop-blur-sm z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
     </>
   );
 };
